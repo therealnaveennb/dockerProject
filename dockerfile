@@ -9,3 +9,4 @@ EXPOSE 80
 
 # Step 4: Start NGINX
 CMD ["nginx", "-g", "daemon off;"]
+                
