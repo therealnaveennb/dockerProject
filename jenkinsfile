@@ -28,9 +28,11 @@ pipeline {
             steps {
                 echo 'Starting NGINX server...'
                 
-                // Start NGINX to serve the HTML file
+                // Run NGINX container to serve the files
                 sh '''
-                nginx -g "daemon off;"
+                docker run -d -p 8080:80 \
+                    -v /tmp/nginx/html:/usr/share/nginx/html \
+                    nginx:alpine
                 '''
             }
         }
