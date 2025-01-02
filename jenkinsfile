@@ -19,8 +19,7 @@ pipeline {
                 
                 // Copy HTML file to the NGINX container's default HTML directory
                 sh '''
-                mkdir -p /usr/share/nginx/html
-                cp index.html /usr/share/nginx/html/index.html
+                cat index.html
                 '''
             }
         }
