@@ -1,0 +1,45 @@
+pipeline {
+    agent {
+        docker {
+            image 'nginx:alpine' // Use an NGINX Docker container for deployment
+        }
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checking out source code...'
+                checkout scm
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying the HTML file...'
+                
+                // Copy HTML file to the NGINX container's default HTML directory
+                sh '''
+                cat index.html
+                '''
+            }
+        }
+
+        stage('Serve') {
+            steps {
+                echo 'Starting NGINX server...'
+                
+                // Run NGINX container to serve the files
+                
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Deployment completed successfully!'
+        }
+        failure {
+            echo 'Deployment failed.'
+        }
+    }
+}
